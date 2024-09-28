@@ -1,10 +1,10 @@
 <template>
+    <div class="header">
+        <h1 class="test-name">{{ testName }}</h1>
+        <!-- Cancel Button -->
+        <button class="cancel-button" @click="confirmCancel">Cancel test</button>
+    </div>
     <div class="test-progress-container">
-      <!-- Cancel Button -->
-      <button class="cancel-button" @click="confirmCancel">Cancel</button>
-    
-      <h2 class="test-name">{{ testName }}</h2>
-
       <!-- Loading SVG -->
       <div class="loading-section">
         <img src="@/assets/Loading.svg" alt="Loading" class="loading-svg" />
@@ -78,12 +78,16 @@
   </script>
   
   <style scoped>
+  .header{
+    position: relative;
+  }
+
   /* Container Styling */
   .test-progress-container {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
+    height: 80vh;
     position: relative;
     flex-direction: column;
   }
@@ -91,18 +95,22 @@
   /* Cancel Button Styling */
   .cancel-button {
     position: absolute;
-    top: 20px;
-    right: 20px;
-    background-color: red;
-    color: white;
-    padding: 10px;
-    border: none;
+    top: 0px;
+    right: 0px;
+    border: red solid 1px;
+    background-color: white;
+    color: black;
+    padding: 10px 15px;
+    font-size: 1rem;
     border-radius: 5px;
     cursor: pointer;
+    transition: transform 0.3s ease, border 0.3s ease;
   }
   
   .cancel-button:hover {
-    background-color: darkred;
+    /* background-color: darkred; */
+    border: red solid 2px;
+    transform: scale(1.04)
   }
   
   /* Loading SVG and Countdown Styling */

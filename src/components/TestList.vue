@@ -70,14 +70,14 @@ export default {
 .grid-container {
   display: grid;
   grid-template-columns: repeat(4, 1fr); /* 4 columns */
-  gap: 15px; /* Gap between buttons */
-  padding: 20px;
+  gap: 20px; /* Gap between buttons */
+  padding: 10px;
   justify-items: center; /* Center the buttons horizontally */
 }
 
 .test-button {
   width: 100%;
-  height: 100px;
+  height: 80px;
   font-size: 1.2rem;
   cursor: pointer;
   background-color: #efefef;

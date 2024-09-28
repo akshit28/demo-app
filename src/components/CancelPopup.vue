@@ -34,14 +34,16 @@
     border-radius: 5px;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
     text-align: center;
+    font-size: 1.2rem;
   }
   
   .popup-content button {
-    margin: 5px;
+    margin: 5px 10px;
     padding: 10px 20px;
     border: none;
     border-radius: 5px;
     cursor: pointer;
+    font-size: 1rem;
   }
   
   .popup-content button:first-child {

@@ -22,7 +22,7 @@ npm run lint
 
 ### Run Electron app
 ```
-npm run serve
+npm run build
 npm run electron
 ```
 

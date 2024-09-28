@@ -1,0 +1,20 @@
+const backendData = [
+    { "id": 1, "name": "Glucose" },
+    { "id": 2, "name": "Urea" },
+    { "id": 3, "name": "Creatinine" },
+    { "id": 4, "name": "Bilirubin" },
+    { "id": 5, "name": "Cholesterol" },
+    { "id": 6, "name": "HDL" },
+    { "id": 7, "name": "LDL" },
+    { "id": 8, "name": "Triglycerides" },
+    { "id": 9, "name": "Calcium" },
+    { "id": 10, "name": "Phosphate" },
+    { "id": 11, "name": "Sodium" },
+    { "id": 12, "name": "Potassium" },
+    { "id": 13, "name": "Magnesium" },
+    { "id": 14, "name": "Protein" },
+    { "id": 15, "name": "Albumin" },
+    { "id": 16, "name": "Alkaline Phosphatase" }
+  ]
+  
+  export default backendData

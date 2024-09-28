@@ -5,6 +5,11 @@ import TestProgress from '../components/TestProgress.vue'
 
 const routes = [
   {
+    path: '/',
+    name: 'Test',
+    component: TestList
+  },
+  {
     path: '/test',
     name: 'Test',
     component: TestList

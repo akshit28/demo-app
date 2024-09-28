@@ -24,7 +24,6 @@
 </template>
 
 <script>
-import axios from '@/axios'
 import TestProgress from './TestProgress.vue'
 
 export default {
@@ -34,37 +33,26 @@ export default {
     return {
       selectedTest: null,
       biochemistryTests: [
-        // { id: 1, name: 'Glucose' },
-        // { id: 2, name: 'Urea' },
-        // { id: 3, name: 'Creatinine' },
-        // { id: 4, name: 'Bilirubin' },
-        // { id: 5, name: 'Cholesterol' },
-        // { id: 6, name: 'HDL' },
-        // { id: 7, name: 'LDL' },
-        // { id: 8, name: 'Triglycerides' },
-        // { id: 9, name: 'Calcium' },
-        // { id: 10, name: 'Phosphate' },
-        // { id: 11, name: 'Sodium' },
-        // { id: 12, name: 'Potassium' },
-        // { id: 13, name: 'Magnesium' },
-        // { id: 14, name: 'Protein' },
-        // { id: 15, name: 'Albumin' },
-        // { id: 16, name: 'Alkaline Phosphatase' }
+        { id: 1, name: 'Glucose' },
+        { id: 2, name: 'Urea' },
+        { id: 3, name: 'Creatinine' },
+        { id: 4, name: 'Bilirubin' },
+        { id: 5, name: 'Cholesterol' },
+        { id: 6, name: 'HDL' },
+        { id: 7, name: 'LDL' },
+        { id: 8, name: 'Triglycerides' },
+        { id: 9, name: 'Calcium' },
+        { id: 10, name: 'Phosphate' },
+        { id: 11, name: 'Sodium' },
+        { id: 12, name: 'Potassium' },
+        { id: 13, name: 'Magnesium' },
+        { id: 14, name: 'Protein' },
+        { id: 15, name: 'Albumin' },
+        { id: 16, name: 'Alkaline Phosphatase' }
       ]
     }
   },
-  created() {
-    this.fetchBiochemistryTests();
-  },
   methods: {
-    async fetchBiochemistryTests() {
-      try {
-        const response = await axios.get('/biochemistry-tests.json');
-        this.biochemistryTests = response.data;
-      } catch (error) {
-        console.error('Error fetching tests:', error);
-      }
-    },
     startTest(test) {
       this.selectedTest = test; // Store the selected test
     },
@@ -92,13 +80,13 @@ export default {
   height: 100px;
   font-size: 1.2rem;
   cursor: pointer;
-  /* background-color: #488f49; */
+  background-color: #efefef;
   border: none;
   border-left: 5px #007BFF solid;
   color: black;
   text-align: left;
   border-radius: 10px;
-  transition: transform 0.3s ease;
+  transition: transform 0.3s ease, background-color 0.6s ease;
   box-sizing: border-box;
   padding-left: 10px;
   font-weight: bold;
@@ -107,5 +95,6 @@ export default {
 
 .test-button:hover {
   transform: scale(1.04); /* Increase size by 10% on hover */
+  background-color: white;
 }
 </style>

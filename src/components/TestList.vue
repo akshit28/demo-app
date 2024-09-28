@@ -7,9 +7,9 @@
       :test-name="selectedTest.name" 
       @cancel="resetTest"
     />
-    <div class="test-conatiner">
-      <h1>Select Tests</h1>
-      <div v-if="!selectedTest" class="grid-container">
+    <div class="test-conatiner" v-if="!selectedTest">
+      <h1>Select Test</h1>
+      <div class="grid-container">
       <button 
         v-for="test in biochemistryTests" 
         :key="test.id" 
@@ -73,24 +73,30 @@ export default {
 .grid-container {
   display: grid;
   grid-template-columns: repeat(4, 1fr); /* 4 columns */
-  gap: 10px; /* Gap between buttons */
+  gap: 15px; /* Gap between buttons */
   padding: 20px;
   justify-items: center; /* Center the buttons horizontally */
 }
 
 .test-button {
-  width: 150px;
-  height: 60px;
-  font-size: 16px;
+  width: 100%;
+  height: 100px;
+  font-size: 1.2rem;
   cursor: pointer;
-  background-color: #4CAF50;
-  color: white;
+  /* background-color: #488f49; */
   border: none;
-  border-radius: 5px;
-  transition: background-color 0.3s ease;
+  border-left: 5px #007BFF solid;
+  color: black;
+  text-align: left;
+  border-radius: 10px;
+  transition: transform 0.3s ease;
+  box-sizing: border-box;
+  padding-left: 10px;
+  font-weight: bold;
+  box-shadow: 1px 2px 5px 2px rgba(0,0,0,0.2);
 }
 
 .test-button:hover {
-  background-color: #45a049;
+  transform: scale(1.04); /* Increase size by 10% on hover */
 }
 </style>

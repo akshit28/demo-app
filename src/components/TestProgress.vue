@@ -11,18 +11,16 @@
         <p class="countdown">{{ minutes }}:{{ seconds }}</p>
       </div>
   
-      <!-- Confirmation Dialog -->
-      <div v-if="showConfirmation" class="confirmation-dialog">
-        <p>Are you sure you want to cancel the test?</p>
-        <button @click="cancelTest">Yes, Cancel</button>
-        <button @click="closeConfirmation">No, Continue</button>
-      </div>
+      <CancelPopup v-if="showConfirmation" @close="closeConfirmation" @confirmCancel="cancelTest" />
     </div>
   </template>
   
   <script>
+  import CancelPopup from '@/components/CancelPopup.vue';
+
   export default {
     name: 'TestProgress',
+    components: { CancelPopup },
     props: {
         testName: {
         type: String,

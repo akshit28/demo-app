@@ -24,6 +24,7 @@
 </template>
 
 <script>
+import axios from '@/axios'
 import TestProgress from './TestProgress.vue'
 
 export default {
@@ -33,26 +34,37 @@ export default {
     return {
       selectedTest: null,
       biochemistryTests: [
-        { id: 1, name: 'Glucose' },
-        { id: 2, name: 'Urea' },
-        { id: 3, name: 'Creatinine' },
-        { id: 4, name: 'Bilirubin' },
-        { id: 5, name: 'Cholesterol' },
-        { id: 6, name: 'HDL' },
-        { id: 7, name: 'LDL' },
-        { id: 8, name: 'Triglycerides' },
-        { id: 9, name: 'Calcium' },
-        { id: 10, name: 'Phosphate' },
-        { id: 11, name: 'Sodium' },
-        { id: 12, name: 'Potassium' },
-        { id: 13, name: 'Magnesium' },
-        { id: 14, name: 'Protein' },
-        { id: 15, name: 'Albumin' },
-        { id: 16, name: 'Alkaline Phosphatase' }
+        // { id: 1, name: 'Glucose' },
+        // { id: 2, name: 'Urea' },
+        // { id: 3, name: 'Creatinine' },
+        // { id: 4, name: 'Bilirubin' },
+        // { id: 5, name: 'Cholesterol' },
+        // { id: 6, name: 'HDL' },
+        // { id: 7, name: 'LDL' },
+        // { id: 8, name: 'Triglycerides' },
+        // { id: 9, name: 'Calcium' },
+        // { id: 10, name: 'Phosphate' },
+        // { id: 11, name: 'Sodium' },
+        // { id: 12, name: 'Potassium' },
+        // { id: 13, name: 'Magnesium' },
+        // { id: 14, name: 'Protein' },
+        // { id: 15, name: 'Albumin' },
+        // { id: 16, name: 'Alkaline Phosphatase' }
       ]
     }
   },
+  created() {
+    this.fetchBiochemistryTests();
+  },
   methods: {
+    async fetchBiochemistryTests() {
+      try {
+        const response = await axios.get('/biochemistry-tests.json');
+        this.biochemistryTests = response.data;
+      } catch (error) {
+        console.error('Error fetching tests:', error);
+      }
+    },
     startTest(test) {
       this.selectedTest = test; // Store the selected test
     },
@@ -61,9 +73,6 @@ export default {
       this.selectedTest = null; // Reset the selected test (hide TestProgress)
     }
 
-    // onTestClick(testId) {
-    //   alert(`You clicked test ID: ${testId}`);
-    // }
   }
 }
 </script>

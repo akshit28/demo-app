@@ -4,8 +4,6 @@ const path = require('path')
 
 let mainWindow
 
-console.log("Preload path: ", path.join(__dirname, 'preload.js'));
-
 function createWindow () {
   mainWindow = new BrowserWindow({
     width: 800,

@@ -86,7 +86,6 @@ export default {
     },
 
     onTestGuideComplete() {
-      console.log("onTestGuideComplete  called ******", this.selectedTest)
       // Hide the TestGuide and show TestProgress
       this.showTestGuide = false;
       this.showTestProgress = true;

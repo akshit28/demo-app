@@ -52,8 +52,6 @@ export default {
             headings: [
                 'Gather Supplies',
                 'Load Supplies',
-                '',
-                ''
             ],
             // Bottom buttons for each step (left and right)
             buttons: [
@@ -81,9 +79,7 @@ export default {
     methods: {
         // Change video based on step
         changeVideo(videoIndex) {
-            console.log("videoIndex", videoIndex);
             const videoPath = window.electron.getVideoPath(this.videoList[videoIndex].url);
-            console.log("videoPath *****", videoPath)
             this.currentVideo = `file://${videoPath}`;
         },
 
@@ -112,7 +108,6 @@ export default {
         },
 
         onVideoEnded() {
-            console.log("onVideoEnded called", this.currentStep, this.currentVideo, this.videoList[this.currentStep].url)
             this.isFourthVideo = false;
             if (this.currentStep === 3 && this.currentVideo.indexOf(this.videoList[2].url) != -1) {
                 this.changeVideo(3); // Play video 4

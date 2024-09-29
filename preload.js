@@ -1,5 +1,3 @@
-// preload.js
-console.log("Preload script running...");
 
 const { contextBridge, ipcRenderer } = require('electron')
 const path = require('path');

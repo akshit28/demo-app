@@ -5,10 +5,12 @@
 
         <!-- Video Section -->
         <div class="video-section">
-            <video :src="currentVideo" preload="auto" autoplay muted playsinline @ended="onVideoEnded" class="video-player">
+            <video v-if="!isFourthVideo" :src="currentVideo" preload="auto" autoplay muted playsinline @ended="onVideoEnded" class="video-player">
                 Your browser does not support the video tag.
             </video>
             <video :src="nextVideo" preload="auto" style="display: none"></video>
+
+            <DiscAnimation v-if="isFourthVideo" class="disc-animation" />
 
             <!-- Overlay for 4th video -->
             <div v-if="isFourthVideo" class="overlay">
@@ -30,10 +32,11 @@
 <script>
 
 import CancelPopup from '@/components/CancelPopup.vue';
+import DiscAnimation from '@/components/DiscAnimation.vue';
 
 export default {
     name: 'TestGuide',
-    components: { CancelPopup },
+    components: { DiscAnimation, CancelPopup },
     data() {
         return {
             // Step management
@@ -120,6 +123,10 @@ export default {
             if (this.currentStep === 3 && this.currentVideo.indexOf(this.videoList[2].url) != -1) {
                 this.changeVideo(3); // Play video 4
                 this.isFourthVideo = true;
+
+                setTimeout(() => {
+                    this.$emit('complete');
+                }, 10000);
             } else if (this.currentVideo.indexOf(this.videoList[3].url) != -1) {
                 this.$emit('complete');
             }
@@ -152,7 +159,7 @@ export default {
     font-weight: bold;
     margin: 10px 20px;
     color: white;
-    height: 44px;
+    /* height: 44px; */
 }
 
 .video-section {

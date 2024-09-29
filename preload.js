@@ -1,8 +1,13 @@
 // preload.js
+console.log("Preload script running...");
+
 const { contextBridge, ipcRenderer } = require('electron')
+const path = require('path');
 
 // Expose safe APIs to the renderer process
-contextBridge.exposeInMainWorld('electronAPI', {
+contextBridge.exposeInMainWorld('electron', {
+  getVideoPath: (video) => path.join(__dirname, 'dist', video),
+
   sendMessage: (channel, data) => {
     // You can whitelist channels here if needed
     let validChannels = ['toMain']

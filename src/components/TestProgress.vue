@@ -2,13 +2,17 @@
     <div class="header">
         <h1 class="test-name">{{ testName }}</h1>
         <!-- Cancel Button -->
-        <button class="cancel-button" @click="confirmCancel">Cancel test</button>
+        
     </div>
     <div class="test-progress-container">
       <!-- Loading SVG -->
       <div class="loading-section">
-        <img src="@/assets/Loading.svg" alt="Loading" class="loading-svg" />
-        <p class="countdown">{{ minutes }}:{{ seconds }}</p>
+        <img src="@/assets/images/Loading.svg" alt="Loading" class="loading-svg" />
+        <div class="loading-container">
+          <p class="countdown">{{ minutes }}:{{ seconds }}</p>
+          <button class="cancel-button" @click="cancelClick"><i class="pi pi-times"></i> Cancel test</button>
+        </div>
+        
       </div>
   
       <CancelPopup v-if="showConfirmation" @close="closeConfirmation" @confirmCancel="cancelTest" />
@@ -52,7 +56,7 @@
           }
         }, 1000);
       },
-      confirmCancel() {
+      cancelClick() {
         this.showConfirmation = true; // Show the confirmation dialog
       },
       closeConfirmation() {
@@ -82,6 +86,10 @@
     position: relative;
   }
 
+  .test-name{
+    color: white;
+  }
+
   /* Container Styling */
   .test-progress-container {
     display: flex;
@@ -91,27 +99,7 @@
     position: relative;
     flex-direction: column;
   }
-  
-  /* Cancel Button Styling */
-  .cancel-button {
-    position: absolute;
-    top: 0px;
-    right: 0px;
-    border: red solid 1px;
-    background-color: white;
-    color: black;
-    padding: 10px 15px;
-    font-size: 1rem;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: transform 0.3s ease, border 0.3s ease;
-  }
-  
-  .cancel-button:hover {
-    /* background-color: darkred; */
-    border: red solid 2px;
-    transform: scale(1.04)
-  }
+
   
   /* Loading SVG and Countdown Styling */
   .loading-section {
@@ -123,18 +111,44 @@
   }
   
   .loading-svg {
-    width: 400px;
-    height: 400px;
+    width: 600px;
+    height: 600px;
     margin-bottom: 20px;
   }
-  
-  .countdown {
-    font-size: 3rem;
-    font-weight: bold;
+
+  .loading-container{
     position: absolute;
     left: 50%;
     top: 40%;
     transform: translate(-50%, -50%);
+  }
+  
+  .countdown {
+    color: white;
+    font-size: 3rem;
+    font-weight: bold;
+  }
+
+   /* Cancel Button Styling */
+   .cancel-button {
+    /* position: absolute;
+    top: 50%;
+    right: 50%; */
+    background-color: white;
+    color: black;
+    padding: 15px 20px;
+    font-size: 1rem;
+    border-radius: 25px;
+    cursor: pointer;
+    border: none;
+    background-color: #2f2f2f;
+    color: white;
+  }
+
+  .cancel-button i {
+      margin-right: 8px;
+      position: relative;
+      top: 1px;
   }
   
   /* Confirmation Dialog Styling */

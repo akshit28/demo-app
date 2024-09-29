@@ -1,37 +1,41 @@
 <template>
   <div class="test">
-    
+    <!-- Conditionally render TestGuide component -->
+    <TestGuide v-if="showTestGuide" @stepCompleted="onGuideComplete" @cancel="cancelTest"
+      @complete="onTestGuideComplete" />
+
     <!-- Show the TestProgress component when a test is selected -->
-    <TestProgress 
-      v-if="selectedTest" 
-      :test-name="selectedTest.name" 
-      @cancel="resetTest"
-    />
-    <div class="test-conatiner" v-if="!selectedTest">
-      <h1>Select Test</h1>
+    <TestProgress v-if="showTestProgress" :test-name="selectedTest.name" @cancel="resetTest" />
+
+    <!-- Test grid and navigation -->
+    <div class="test-conatiner" v-if="!showTestGuide && !showTestProgress">
+      <h1 class="page-heading">Select Test</h1>
       <div class="grid-container">
-      <button 
-        v-for="test in biochemistryTests" 
-        :key="test.id" 
-        class="test-button"
-        @click="startTest(test)"
-      >
-        {{ test.name }}
-      </button>
-    </div>
+        <button v-for="test in biochemistryTests" :key="test.id" class="test-button" @click="openTestGuide(test)">
+          {{ test.name }}
+        </button>
+      </div>
     </div>
   </div>
 </template>
 
 <script>
-import TestProgress from './TestProgress.vue'
+// import TestProgress from './TestProgress.vue'
+import TestProgress from '@/components/TestProgress.vue';
+import TestGuide from '@/components/TestGuide.vue';
 
 export default {
   name: 'TestList',
-  components: { TestProgress },
+  components: {
+    TestGuide,
+    TestProgress
+  },
   data() {
     return {
+      showTestGuide: false,
+      showTestProgress: false,
       selectedTest: null,
+
       biochemistryTests: [
         { id: 1, name: 'Glucose' },
         { id: 2, name: 'Urea' },
@@ -53,26 +57,59 @@ export default {
     }
   },
   methods: {
+    openTestGuide(test) {
+      this.selectedTest = test; // Store the selected test ID
+      this.showTestGuide = true; // Show TestGuide component
+      this.showTestProgress = false;
+    },
+
     startTest(test) {
       this.selectedTest = test; // Store the selected test
     },
 
     resetTest() {
       this.selectedTest = null; // Reset the selected test (hide TestProgress)
-    }
+      this.showTestGuide = false;
+      this.showTestProgress = false;
+    },
 
+    onGuideComplete() {
+      // Hide TestGuide and show TestProgress once steps are completed
+      this.showTestGuide = false;
+      this.showTestProgress = true;
+    },
+    cancelTest() {
+      // Handle test cancellation
+      this.showTestGuide = false;
+      this.showTestProgress = false;
+      this.selectedTest = null;
+    },
+
+    onTestGuideComplete() {
+      console.log("onTestGuideComplete  called ******", this.selectedTest)
+      // Hide the TestGuide and show TestProgress
+      this.showTestGuide = false;
+      this.showTestProgress = true;
+    },
   }
 }
 </script>
 
 <style scoped>
 /* Style for the grid layout */
+.page-heading {
+  color: white;
+}
+
 .grid-container {
   display: grid;
-  grid-template-columns: repeat(4, 1fr); /* 4 columns */
-  gap: 20px; /* Gap between buttons */
+  grid-template-columns: repeat(4, 1fr);
+  /* 4 columns */
+  gap: 20px;
+  /* Gap between buttons */
   padding: 10px;
-  justify-items: center; /* Center the buttons horizontally */
+  justify-items: center;
+  /* Center the buttons horizontally */
 }
 
 .test-button {
@@ -80,21 +117,25 @@ export default {
   height: 80px;
   font-size: 1.2rem;
   cursor: pointer;
-  background-color: #efefef;
+  /* background-color: #efefef; */
+  background-color: #2f2f2f;
   border: none;
-  border-left: 5px #007BFF solid;
-  color: black;
+  /* border-left: 5px #007BFF solid; */
+  border: 1px solid #e1e1e1;
+  color: white;
   text-align: left;
   border-radius: 10px;
   transition: transform 0.3s ease, background-color 0.6s ease;
   box-sizing: border-box;
   padding-left: 10px;
   font-weight: bold;
-  box-shadow: 1px 2px 5px 2px rgba(0,0,0,0.2);
+  box-shadow: 1px 2px 5px 2px rgba(0, 0, 0, 0.2);
+  font-weight: lighter;
 }
 
 .test-button:hover {
-  transform: scale(1.04); /* Increase size by 10% on hover */
+  transform: scale(1.04);
+  /* Increase size by 10% on hover */
   background-color: white;
 }
 </style>

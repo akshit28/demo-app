@@ -122,7 +122,7 @@ export default {
   color: white;
   text-align: left;
   border-radius: 10px;
-  transition: transform 0.3s ease, background-color 0.6s ease;
+  transition: transform 0.3s ease;
   box-sizing: border-box;
   padding-left: 10px;
   font-weight: bold;
@@ -133,6 +133,6 @@ export default {
 .test-button:hover {
   transform: scale(1.04);
   /* Increase size by 10% on hover */
-  background-color: white;
+  /* background-color: white; */
 }
 </style>

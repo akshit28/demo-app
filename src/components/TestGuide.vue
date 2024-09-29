@@ -5,7 +5,7 @@
 
         <!-- Video Section -->
         <div class="video-section">
-            <video :src="currentVideo" autoplay muted playsinline @ended="onVideoEnded" class="video-player">
+            <video :src="currentVideo" preload="auto" autoplay muted playsinline @ended="onVideoEnded" class="video-player">
                 Your browser does not support the video tag.
             </video>
 
@@ -127,7 +127,6 @@ export default {
         },
     },
     mounted() {
-        // this.changeVideo(0); // Start with Video 1 on mount
         setTimeout(() => {
             this.changeVideo(0); // Start with Video 1 on mount
         }, 0);
@@ -150,7 +149,7 @@ export default {
     font-weight: bold;
     margin: 10px 20px;
     color: white;
-    /* height: 10vh; */
+    height: 44px;
 }
 
 .video-section {
@@ -191,7 +190,6 @@ export default {
 
 .button-section button i {
     margin-right: 8px;
-    /* Add some space between the icon and text */
 }
 
 .cancel-button {
@@ -223,14 +221,10 @@ export default {
     width: 100%;
     height: 100%;
     background-color: rgba(0, 0, 0, 0.2);
-    /* Semi-transparent background */
     display: flex;
     justify-content: center;
-    /* Center horizontally */
     align-items: center;
-    /* Center vertically */
     z-index: 10;
-    /* Ensure overlay is above other elements */
 }
 
 .overlay-text {

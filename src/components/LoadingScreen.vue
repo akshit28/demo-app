@@ -19,7 +19,7 @@ export default {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
+  height: 100%;
   flex-direction: column;
   position: relative;
 }
@@ -43,8 +43,8 @@ export default {
 }
 
 .loading-container img {
-  width: 600px;
-  height: 600px;
+  width: 550px;
+  height: 550px;
 }
 
 .loading-container p {

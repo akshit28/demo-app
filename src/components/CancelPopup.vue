@@ -29,30 +29,30 @@
   }
   
   .popup-content {
-    background: white;
+    background: #2f2f2f;
     padding: 20px;
     border-radius: 5px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
     text-align: center;
     font-size: 1.2rem;
+    color: white;
   }
   
   .popup-content button {
     margin: 5px 10px;
     padding: 10px 20px;
     border: none;
-    border-radius: 5px;
+    border-radius: 20px;
     cursor: pointer;
     font-size: 1rem;
   }
   
-  .popup-content button:first-child {
-    background-color: #f44336; /* Red color for cancel */
-    color: white;
+  .popup-content button:nth-of-type(1){
+    background-color: white; /* Red color for cancel */
+    color: black;
   }
   
   .popup-content button:last-child {
-    background-color: #4CAF50; /* Green color for continue */
+    background-color: black; /* Green color for continue */
     color: white;
   }
   </style>

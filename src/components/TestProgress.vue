@@ -1,8 +1,6 @@
 <template>
     <div class="header">
-        <h1 class="test-name">{{ testName }}</h1>
-        <!-- Cancel Button -->
-        
+      <div class="current-time">{{ currentDateTime }}</div>
     </div>
     <div class="test-progress-container">
       <!-- Loading SVG -->
@@ -10,6 +8,7 @@
         <img src="@/assets/images/Loading.svg" alt="Loading" class="loading-svg" />
         <div class="loading-container">
           <p class="countdown">{{ minutes }}:{{ seconds }}</p>
+          <div class="test-name">{{ testName }}</div>
           <button class="cancel-button" @click="cancelClick"><i class="pi pi-times"></i> Cancel test</button>
         </div>
         
@@ -36,6 +35,7 @@
         timeRemaining: 600, // 10 minutes in seconds
         timer: null,
         showConfirmation: false, // To show/hide the confirmation dialog
+        currentDateTime: ''
       }
     },
     computed: {
@@ -68,10 +68,23 @@
         this.$emit('cancel');
         // alert('Test has been canceled');
         // Handle any other test cancellation logic here
-      }
+      },
+      updateDateTime() {
+            const now = new Date();
+            this.currentDateTime = now.toLocaleString('en-US', {
+                year: 'numeric',
+                month: '2-digit',
+                day: '2-digit',
+                hour: '2-digit',
+                minute: '2-digit',
+                hour12: false // Set to false for 24-hour format
+            }) // Remove seconds
+        }
     },
     mounted() {
       this.startTimer(); // Start the countdown timer when the component is mounted
+      this.updateDateTime(); // Call once on mount
+      setInterval(this.updateDateTime, 1000); // Update every second
     },
     beforeUnmount() {
       if (this.timer) {
@@ -84,10 +97,19 @@
   <style scoped>
   .header{
     position: relative;
+    color: white
   }
 
+  .current-time{
+    position: absolute;
+    right: -5px;
+    top: -5px;
+    font-size: .8rem;
+  }
   .test-name{
+    margin: 10px 0;
     color: white;
+    font-size: 1.4rem;
   }
 
   /* Container Styling */
@@ -108,45 +130,40 @@
     align-items: center;
     flex-direction: column;
     position: relative;
+    padding-top: 40px;
   }
   
   .loading-svg {
-    width: 600px;
-    height: 600px;
-    margin-bottom: 20px;
+    width: 550px;
+    height: 550px;
   }
 
   .loading-container{
     position: absolute;
     left: 50%;
-    top: 40%;
+    top: 50%;
     transform: translate(-50%, -50%);
   }
   
   .countdown {
     color: white;
-    font-size: 3rem;
-    font-weight: bold;
+    font-size: 4rem;
+    margin: 0 0 10px;
   }
 
    /* Cancel Button Styling */
    .cancel-button {
-    /* position: absolute;
-    top: 50%;
-    right: 50%; */
-    background-color: white;
-    color: black;
-    padding: 15px 20px;
-    font-size: 1rem;
+    padding: 10px 12px;
+    font-size: 0.9rem;
     border-radius: 25px;
     cursor: pointer;
     border: none;
     background-color: #2f2f2f;
-    color: white;
+    color: #fff;
   }
 
   .cancel-button i {
-      margin-right: 8px;
+      margin-right: 1px;
       position: relative;
       top: 1px;
   }

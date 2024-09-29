@@ -11,29 +11,34 @@
 
             <!-- Overlay for 4th video -->
             <div v-if="isFourthVideo" class="overlay">
-                <div class="overlay-text">Initializing...</div>
+                <div class="overlay-text">Initializing</div>
             </div>
         </div>
 
         <!-- Bottom Button Section (Visible in steps 1 and 2 only) -->
         <div class="button-section" v-if="showButtons">
-            <button class="cancel-button" @click="handleCancel"><i class="pi pi-times"></i>{{ bottomButtonLeft }}</button>
-            <button class="action-button" @click="handleAction">{{ bottomButtonRight }}<i class="pi pi-angle-right"></i></button>
+            <button class="cancel-button" @click="handleCancel"><i class="pi pi-times"></i>{{ bottomButtonLeft
+                }}</button>
+            <button class="action-button" @click="handleAction">{{ bottomButtonRight }}<i
+                    class="pi pi-angle-right"></i></button>
         </div>
+        <CancelPopup v-if="showConfirmation" @close="closeConfirmation" @confirmCancel="cancelTest" />
     </div>
 </template>
 
 <script>
 
-// import path from 'path-browserify';
+import CancelPopup from '@/components/CancelPopup.vue';
 
 export default {
     name: 'TestGuide',
+    components: { CancelPopup },
     data() {
         return {
             // Step management
             currentStep: 1,
             isFourthVideo: false,
+            showConfirmation: false,
             // Video sources
             videoList: [
                 { name: 'Video 1', url: '/video/animation_1.mp4' },
@@ -47,6 +52,8 @@ export default {
             headings: [
                 'Gather Supplies',
                 'Load Supplies',
+                '',
+                ''
             ],
             // Bottom buttons for each step (left and right)
             buttons: [
@@ -72,11 +79,6 @@ export default {
         }
     },
     methods: {
-
-        // getVideoPath(fileName) {
-        // // Use `__dirname` to get the correct path
-        // return require('path').join(__dirname, 'assets/videos', fileName);
-        // },
         // Change video based on step
         changeVideo(videoIndex) {
             console.log("videoIndex", videoIndex);
@@ -87,9 +89,13 @@ export default {
 
         // Handles the 'Cancel' button action
         handleCancel() {
+            this.showConfirmation = true
+
+        },
+
+        cancelTest(){
             if (this.currentStep === 1 || this.currentStep === 2) {
                 // Perform cancel action (e.g., reset or stop the process)
-                alert('Test canceled!');
                 this.$emit('cancel'); // Emit cancel event for the parent component
             }
         },
@@ -97,16 +103,12 @@ export default {
         // Handles the 'Open Drawer' or 'Close Drawer' action
         handleAction() {
             if (this.currentStep === 1) {
-                // Open Drawer action
-                //   alert('Drawer opened!');
                 this.currentStep++;
                 this.changeVideo(1); // Change to Video 2
             } else if (this.currentStep === 2) {
-                // Close Drawer action
-                //   alert('Drawer closed!');
                 this.currentStep++;
                 this.changeVideo(2); // Automatically switch to Video 3
-            } 
+            }
         },
 
         onVideoEnded() {
@@ -116,19 +118,13 @@ export default {
                 this.changeVideo(3); // Play video 4
                 this.isFourthVideo = true;
             } else if (this.currentVideo.indexOf(this.videoList[3].url) != -1) {
-                // Fourth video ended, navigate to TestProgress
-                // this.$router.push({ name: 'TestProgress' });
                 this.$emit('complete');
             }
         },
 
-        //   // When a video ends
-        //   onVideoEnd() {
-        //     // If the current step is 3 (video 3 ends), automatically play video 4
-        //     if (this.currentStep === 3 && this.currentVideo === this.videoList[2].url) {
-        //       this.changeVideo(3); // Play video 4
-        //     }
-        //   }
+        closeConfirmation() {
+            this.showConfirmation = false; // Close the confirmation dialog
+        },
     },
     mounted() {
         // this.changeVideo(0); // Start with Video 1 on mount
@@ -145,15 +141,14 @@ export default {
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 20px;
-    height: 100vh;
+    padding: 0 20px;
     box-sizing: border-box;
 }
 
 .heading {
     font-size: 2rem;
     font-weight: bold;
-    margin-bottom: 20px;
+    margin: 10px 20px;
     color: white;
     /* height: 10vh; */
 }
@@ -164,13 +159,11 @@ export default {
     /* Center horizontally */
     align-items: center;
     min-height: 400px;
-    /* Center vertically */
-    margin: 20px 0;
     /* Margin for spacing */
 }
 
 .video-player {
-    width: 100%;
+    width: 90%;
     height: auto;
     min-height: 400px;
     max-width: 700px;
@@ -197,7 +190,8 @@ export default {
 }
 
 .button-section button i {
-    margin-right: 8px; /* Add some space between the icon and text */
+    margin-right: 8px;
+    /* Add some space between the icon and text */
 }
 
 .cancel-button {
@@ -216,7 +210,7 @@ export default {
     color: black;
 }
 
-.action-button i{
+.action-button i {
     margin-left: 8px;
     position: relative;
     top: 2px;
@@ -228,11 +222,15 @@ export default {
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.4); /* Semi-transparent background */
+    background-color: rgba(0, 0, 0, 0.2);
+    /* Semi-transparent background */
     display: flex;
-    justify-content: center; /* Center horizontally */
-    align-items: center; /* Center vertically */
-    z-index: 10; /* Ensure overlay is above other elements */
+    justify-content: center;
+    /* Center horizontally */
+    align-items: center;
+    /* Center vertically */
+    z-index: 10;
+    /* Ensure overlay is above other elements */
 }
 
 .overlay-text {

@@ -117,11 +117,8 @@ export default {
   height: 80px;
   font-size: 1.2rem;
   cursor: pointer;
-  /* background-color: #efefef; */
   background-color: #2f2f2f;
   border: none;
-  /* border-left: 5px #007BFF solid; */
-  border: 1px solid #e1e1e1;
   color: white;
   text-align: left;
   border-radius: 10px;
@@ -129,7 +126,7 @@ export default {
   box-sizing: border-box;
   padding-left: 10px;
   font-weight: bold;
-  box-shadow: 1px 2px 5px 2px rgba(0, 0, 0, 0.2);
+  /* box-shadow: 1px 2px 5px 2px rgba(0, 0, 0, 0.2); */
   font-weight: lighter;
 }
 

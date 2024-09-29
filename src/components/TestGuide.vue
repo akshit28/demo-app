@@ -8,6 +8,7 @@
             <video :src="currentVideo" preload="auto" autoplay muted playsinline @ended="onVideoEnded" class="video-player">
                 Your browser does not support the video tag.
             </video>
+            <video :src="nextVideo" preload="auto" style="display: none"></video>
 
             <!-- Overlay for 4th video -->
             <div v-if="isFourthVideo" class="overlay">
@@ -47,7 +48,7 @@ export default {
                 { name: 'Video 4', url: '/video/animation_4.mp4' }
             ],
             currentVideo: '/animation_1.mp4', // Start with the first video
-
+            nextVideo: '/animation_2.mp4',
             // Headings for each step
             headings: [
                 'Gather Supplies',
@@ -79,8 +80,15 @@ export default {
     methods: {
         // Change video based on step
         changeVideo(videoIndex) {
+            console.log("changeVideo", videoIndex)
             const videoPath = window.electron.getVideoPath(this.videoList[videoIndex].url);
             this.currentVideo = `file://${videoPath}`;
+
+            if(this.videoList[videoIndex+1] != null){
+                const videoPath1 = window.electron.getVideoPath(this.videoList[videoIndex+1].url);
+                this.nextVideo = `file://${videoPath1}`;    
+            }
+            
         },
 
         // Handles the 'Cancel' button action

@@ -47,13 +47,13 @@
   }
   
   .popup-content button:nth-of-type(1){
-    background-color: white; /* Red color for cancel */
-    color: black;
+    background-color: black; /* Green color for continue */
+    color: white;
   }
   
   .popup-content button:last-child {
-    background-color: black; /* Green color for continue */
-    color: white;
+    background-color: white; /* Red color for cancel */
+    color: black;
   }
   </style>
   

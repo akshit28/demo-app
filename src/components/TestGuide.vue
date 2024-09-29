@@ -125,7 +125,7 @@ export default {
 
                 setTimeout(() => {
                     this.$emit('complete');
-                }, 100000);
+                }, 10000);
             } else if (this.currentVideo.indexOf(this.videoList[3].url) != -1) {
                 this.$emit('complete');
             }

@@ -33,11 +33,11 @@ export default {
     align-items: center;
     justify-content: center;
     height: 600px;
-    perspective: 700px;
-    /* transition: transform 1s ease; */
+    perspective: 1000px;
     transform: rotateX(65deg);
     position: absolute;
     top: 0;
+    transition: transform 2s ease-in-out;
 }
 
 .disc {
@@ -45,12 +45,11 @@ export default {
     height: 0;
     border-radius: 50%;
     /* animation: rotate 0.3s linear infinite; */
-    animation: expand 2s forwards, rotate 0.2s linear infinite;
+    animation: expand 3s cubic-bezier(0.25, 1, 0.5, 1) forwards, rotate 0.2s linear infinite;
     /* Use expand animation */
     transform-style: preserve-3d;
     position: relative;
     background: linear-gradient(145deg, #f0f0f0, #d4d4d4);
-    /* box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1), inset 0 0 10px rgba(0, 0, 0, 0.1); */
     transform: rotateX(45deg);
     background-image: url('@/assets/images/disc.png');
     background-repeat: no-repeat;

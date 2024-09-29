@@ -5,12 +5,12 @@
 
         <!-- Video Section -->
         <div class="video-section">
-            <video v-if="!isFourthVideo" :src="currentVideo" preload="auto" autoplay muted playsinline @ended="onVideoEnded" class="video-player">
+            <DiscAnimation v-if="isFourthVideo" class="disc-animation" />
+            <video v-if="!isFourthVideo" :src="currentVideo" preload="auto" autoplay muted playsinline
+                @ended="onVideoEnded" class="video-player">
                 Your browser does not support the video tag.
             </video>
             <video :src="nextVideo" preload="auto" style="display: none"></video>
-
-            <DiscAnimation v-if="isFourthVideo" class="disc-animation" />
 
             <!-- Overlay for 4th video -->
             <div v-if="isFourthVideo" class="overlay">
@@ -87,11 +87,11 @@ export default {
             const videoPath = window.electron.getVideoPath(this.videoList[videoIndex].url);
             this.currentVideo = `file://${videoPath}`;
 
-            if(this.videoList[videoIndex+1] != null){
-                const videoPath1 = window.electron.getVideoPath(this.videoList[videoIndex+1].url);
-                this.nextVideo = `file://${videoPath1}`;    
+            if (this.videoList[videoIndex + 1] != null) {
+                const videoPath1 = window.electron.getVideoPath(this.videoList[videoIndex + 1].url);
+                this.nextVideo = `file://${videoPath1}`;
             }
-            
+
         },
 
         // Handles the 'Cancel' button action
@@ -100,9 +100,8 @@ export default {
 
         },
 
-        cancelTest(){
+        cancelTest() {
             if (this.currentStep === 1 || this.currentStep === 2) {
-                // Perform cancel action (e.g., reset or stop the process)
                 this.$emit('cancel'); // Emit cancel event for the parent component
             }
         },
@@ -126,7 +125,7 @@ export default {
 
                 setTimeout(() => {
                     this.$emit('complete');
-                }, 10000);
+                }, 100000);
             } else if (this.currentVideo.indexOf(this.videoList[3].url) != -1) {
                 this.$emit('complete');
             }
@@ -176,7 +175,6 @@ export default {
     height: auto;
     min-height: 400px;
     max-width: 700px;
-    /* Max width for video */
     border-radius: 10px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
 }
@@ -239,7 +237,7 @@ export default {
 
 .overlay-text {
     color: white;
-    font-size: 3rem;
+    font-size: 2.6rem;
     font-weight: bold;
     font-weight: lighter;
 }

@@ -45,12 +45,12 @@ export default {
     height: 0;
     border-radius: 50%;
     /* animation: rotate 0.3s linear infinite; */
-    animation: expand 0.9s forwards, rotate 0.2s linear infinite;
+    animation: expand 2s forwards, rotate 0.2s linear infinite;
     /* Use expand animation */
     transform-style: preserve-3d;
     position: relative;
     background: linear-gradient(145deg, #f0f0f0, #d4d4d4);
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1), inset 0 0 10px rgba(0, 0, 0, 0.1);
+    /* box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1), inset 0 0 10px rgba(0, 0, 0, 0.1); */
     transform: rotateX(45deg);
     background-image: url('@/assets/images/disc.png');
     background-repeat: no-repeat;

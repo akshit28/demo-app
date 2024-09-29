@@ -24,21 +24,23 @@ export default {
   position: relative;
 }
 
-.loading-text{
+.loading-text {
   position: absolute;
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
 }
-.loading-text > span{
+
+.loading-text>span {
   color: white;
   display: block
-
 }
-.loading-text > span:nth-of-type(1){
+
+.loading-text>span:nth-of-type(1) {
   font-size: 4rem;
 }
-.loading-text > span:nth-of-type(2){
+
+.loading-text>span:nth-of-type(2) {
   font-size: 1rem;
 }
 

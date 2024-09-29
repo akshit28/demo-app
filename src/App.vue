@@ -6,7 +6,7 @@
 </template>
 
 <script>
-import LoadingScreen from './components/LoadingScreen.vue'  
+import LoadingScreen from './components/LoadingScreen.vue'
 
 export default {
   name: 'App',
@@ -18,7 +18,7 @@ export default {
       isLoading: true
     }
   },
-  mounted(){
+  mounted() {
     setTimeout(() => {
       this.isLoading = false
       this.$router.push('/test')
@@ -31,6 +31,7 @@ export default {
 body {
   background: black;
 }
+
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;

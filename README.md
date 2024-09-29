@@ -1,3 +1,5 @@
+https://github.com/user-attachments/assets/0333a2ee-2916-4302-82a2-b68548fa5641
+
 # my-vue-app
 
 ## Project setup
@@ -28,3 +30,6 @@ npm run electron
 
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
+
+
+

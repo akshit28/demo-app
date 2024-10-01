@@ -1,7 +1,6 @@
 import { createRouter, createWebHashHistory } from 'vue-router'
-// import HelloWorld from '../components/HelloWorld.vue'
-import TestList from '../components/TestList.vue'
-import TestProgress from '../components/TestProgress.vue'
+import TestList from '@/components/TestList.vue'
+import TestProgress from '@/components/TestProgress.vue'
 
 const routes = [
   {

@@ -3,16 +3,13 @@
     <div class="current-time">{{ currentDateTime }}</div>
   </div>
   <div class="test-progress-container">
-    <!-- Loading SVG -->
-    <div class="loading-section">
-      <img src="@/assets/images/Loading.svg" alt="Loading" class="loading-svg" />
-      <div class="loading-container">
-        <p class="countdown">{{ minutes }}:{{ seconds }}</p>
-        <div class="test-name">{{ testName }}</div>
-        <button class="cancel-button" @click="cancelClick"><i class="pi pi-times"></i> Cancel test</button>
-      </div>
-
+    <LoadingScreen />
+    <div class="test-info-container">
+      <p class="countdown">{{ minutes }}:{{ seconds }}</p>
+      <div class="test-name">{{ testName }}</div>
+      <button class="cancel-button" @click="cancelClick"><i class="pi pi-times"></i> Cancel test</button>
     </div>
+
 
     <CancelPopup v-if="showConfirmation" @close="closeConfirmation" @confirmCancel="cancelTest" />
   </div>
@@ -20,10 +17,11 @@
 
 <script>
 import CancelPopup from '@/components/CancelPopup.vue';
+import LoadingScreen from '@/components/LoadingScreen.vue'
 
 export default {
   name: 'TestProgress',
-  components: { CancelPopup },
+  components: { CancelPopup, LoadingScreen },
   props: {
     testName: {
       type: String,
@@ -66,8 +64,6 @@ export default {
       clearInterval(this.timer);
       this.showConfirmation = false;
       this.$emit('cancel');
-      // alert('Test has been canceled');
-      // Handle any other test cancellation logic here
     },
     updateDateTime() {
       const now = new Date();
@@ -77,8 +73,8 @@ export default {
         day: '2-digit',
         hour: '2-digit',
         minute: '2-digit',
-        hour12: false // Set to false for 24-hour format
-      }) // Remove seconds
+        hour12: false
+      })
     }
   },
   mounted() {
@@ -102,8 +98,8 @@ export default {
 
 .current-time {
   position: absolute;
-  right: -5px;
-  top: -5px;
+  right: 4px;
+  top: 0;
   font-size: .8rem;
 }
 
@@ -113,33 +109,15 @@ export default {
   font-size: 1.4rem;
 }
 
-/* Container Styling */
 .test-progress-container {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 80vh;
-  position: relative;
-  flex-direction: column;
-}
-
-
-/* Loading SVG and Countdown Styling */
-.loading-section {
-  display: flex;
-  justify-content: center;
-  align-items: center;
   flex-direction: column;
   position: relative;
-  padding-top: 40px;
 }
 
-.loading-svg {
-  width: 550px;
-  height: 550px;
-}
-
-.loading-container {
+.test-info-container {
   position: absolute;
   left: 50%;
   top: 50%;

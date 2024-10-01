@@ -1,7 +1,5 @@
 
-
-
-https://github.com/user-attachments/assets/5088b0ca-9ef9-4fb7-b5d7-197104cfbb57
+https://github.com/user-attachments/assets/0ed556ab-b96e-41e7-a348-4b042720a621
 
 
 # my-vue-app

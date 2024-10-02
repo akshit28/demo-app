@@ -98,6 +98,7 @@ export default {
 /* Style for the grid layout */
 .page-heading {
   color: white;
+  margin: 15px 10px;
 }
 
 .grid-container {
@@ -131,7 +132,5 @@ export default {
 
 .test-button:hover {
   transform: scale(1.04);
-  /* Increase size by 10% on hover */
-  /* background-color: white; */
 }
 </style>

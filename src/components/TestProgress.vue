@@ -1,17 +1,29 @@
 <template>
-  <div class="header">
-    <div class="current-time">{{ currentDateTime }}</div>
-  </div>
-  <div class="test-progress-container">
-    <LoadingScreen />
-    <div class="test-info-container">
-      <p class="countdown">{{ minutes }}:{{ seconds }}</p>
-      <div class="test-name">{{ testName }}</div>
-      <button class="cancel-button" @click="cancelClick"><i class="pi pi-times"></i> Cancel test</button>
+  <div class="test-progress-section">
+    <div class="header">
+      <div class="current-time">{{ currentDateTime }}</div>
     </div>
+    <div class="test-progress-container">
+      <LoadingScreen ref="loadingScreenRef" />
+      <div class="test-info-container">
+        <div class="test-progress" v-if="!testCompleted">
+          <video :src="currentVideo" preload="auto" autoplay muted playsinline class="logo-animation" />
+          <h3 class="countdown">{{ minutes }}:{{ seconds }}</h3>
+          <div class="message mt5">Running analysis</div>
+          <div class="patient-details mt5 mb20">Sharma<span>&#183;</span>MRN<span>&#183;</span>11/26</div>
+          <button class="button cancel" @click="cancelClick"><i class="pi pi-times"></i> Cancel test</button>
+        </div>
+        <div class="test-completed" v-else>
+          <i class="pi pi-check mb15"></i>
+          <h3 class="mb10">Test complete</h3>
+          <div class="message mt5">Analysis Complete</div>
+          <div class="patient-details mt5 mb20">Sharma<span>&#183;</span>MRN<span>&#183;</span>11/26</div>
+          <button class="button confirm" @click="showReport">Show test results</button>
+        </div>
+      </div>
 
-
-    <CancelPopup v-if="showConfirmation" @close="closeConfirmation" @confirmCancel="cancelTest" />
+      <CancelPopup v-if="showConfirmation" @close="closeConfirmation" @confirmCancel="cancelTest" />
+    </div>
   </div>
 </template>
 
@@ -33,7 +45,9 @@ export default {
       timeRemaining: 600, // 10 minutes in seconds
       timer: null,
       showConfirmation: false, // To show/hide the confirmation dialog
-      currentDateTime: ''
+      currentDateTime: '',
+      testCompleted: false,
+      currentVideo: window.electron.getVideoPath("/video/logo-animation.mp4")
     }
   },
   computed: {
@@ -65,6 +79,15 @@ export default {
       this.showConfirmation = false;
       this.$emit('cancel');
     },
+    completeTest() {
+      clearInterval(this.timer);
+      this.testCompleted = true
+      this.$refs.loadingScreenRef.completeTest();
+    },
+    showReport() {
+      this.$router.push('/testresult')
+    },
+
     updateDateTime() {
       const now = new Date();
       this.currentDateTime = now.toLocaleString('en-US', {
@@ -81,6 +104,10 @@ export default {
     this.startTimer(); // Start the countdown timer when the component is mounted
     this.updateDateTime(); // Call once on mount
     setInterval(this.updateDateTime, 1000); // Update every second
+
+    setTimeout(() => {
+      this.completeTest();
+    }, 5000);
   },
   beforeUnmount() {
     if (this.timer) {
@@ -91,6 +118,10 @@ export default {
 </script>
 
 <style scoped>
+.test-progress-section {
+  background-color: #121212;
+}
+
 .header {
   position: relative;
   color: white
@@ -127,59 +158,66 @@ export default {
 .countdown {
   color: white;
   font-size: 4rem;
-  margin: 0 0 10px;
+  font-weight: 400;
 }
 
 /* Cancel Button Styling */
-.cancel-button {
-  padding: 10px 12px;
-  font-size: 0.9rem;
+button {
+  padding: 12px 14px;
+  font-size: 1rem;
+  font-weight: 600;
   border-radius: 25px;
   cursor: pointer;
   border: none;
+
+}
+
+.button.cancel {
   background-color: #2f2f2f;
   color: #fff;
 }
 
-.cancel-button i {
+.button.cancel i {
   margin-right: 1px;
   position: relative;
   top: 1px;
+
 }
 
-/* Confirmation Dialog Styling */
-.confirmation-dialog {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  background-color: white;
-  padding: 20px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-  text-align: center;
+.button.confirm {
+  background-color: #fff;
 }
 
-.confirmation-dialog p {
-  margin-bottom: 15px;
+.test-progress,
+.test-completed {
+  color: #fff;
 }
 
-.confirmation-dialog button {
-  margin: 5px;
-  padding: 10px;
-  border: none;
-  cursor: pointer;
-  background-color: #4CAF50;
-  color: white;
-  border-radius: 5px;
+.message,
+.patient-details {
+  font-size: 1.2rem;
 }
 
-.confirmation-dialog button:first-child {
-  background-color: red;
+.patient-details span {
+  display: inline-block;
+  padding: 0 5px;
+  font-weight: bold;
 }
 
-.confirmation-dialog button:first-child:hover {
-  background-color: darkred;
+.logo-animation {
+  height: 55px;
+  margin-top: -15px;
 }
+
+.test-completed h3 {
+  color: #fff;
+  font-size: 2rem;
+}
+
+.test-completed i{
+  font-size: 2rem;
+  margin-top: -25px;
+}
+
+
 </style>

@@ -11,8 +11,8 @@
     <g>
       <g v-for="(_, index) in 100" :key="index" :transform="`rotate(${3.6 * index} 50 50)`">
         <rect
-          :fill="getBarColor(index)"
-          height="2"
+          :fill="getBarColor()"
+          height="2.5"
           width="0.4"
           ry="0"
           rx="0"
@@ -42,11 +42,11 @@ export default {
   props: {
     width: {
       type: [Number, String],
-      default: 550
+      default: 600
     },
     height: {
       type: [Number, String],
-      default: 550
+      default: 600
     }
   },
   data(){
@@ -55,8 +55,7 @@ export default {
     };
   },
   methods: {
-    getBarColor(index) {
-      console.log(index)
+    getBarColor() {
       return this.testCompleted ? 'green' : 'white';
     },
     completeTest() {

@@ -1,8 +1,6 @@
 <template>
     <div :class="['container']">
-        <div class="disc disc1"></div>
-        <div class="disc disc2"></div>
-        <div class="disc disc3"></div>
+        <div v-for="(disc, index) in discs" :key="index" :class="['disc', 'disc' + (index + 1)]"></div>
     </div>
 </template>
 
@@ -11,6 +9,7 @@ export default {
     name: 'DiscAnimation',
     data() {
         return {
+            discs: [1, 2, 3],
             sideView: false, // Toggle for the view change
         };
     },
@@ -77,8 +76,4 @@ export default {
     }
 }
 
-/* Angle transition: Top view to side view */
-.container.side-view {
-    transform: rotateX(65deg);
-}
 </style>

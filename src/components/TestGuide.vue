@@ -20,9 +20,9 @@
 
         <!-- Bottom Button Section (Visible in steps 1 and 2 only) -->
         <div class="button-section" v-if="showButtons">
-            <button class="cancel-button" @click="handleCancel"><i class="pi pi-times"></i>{{ bottomButtonLeft
+            <button class="button cancel" @click="handleCancel"><i class="pi pi-times"></i>{{ bottomButtonLeft
                 }}</button>
-            <button class="action-button" @click="handleAction">{{ bottomButtonRight }}<i
+            <button class="button action" @click="handleAction">{{ bottomButtonRight }}<i
                     class="pi pi-angle-right"></i></button>
         </div>
         <CancelPopup v-if="showConfirmation" @close="closeConfirmation" @confirmCancel="cancelTest" />
@@ -50,8 +50,8 @@ export default {
                 { name: 'Video 3', url: '/video/animation_3.mp4' },
                 { name: 'Video 4', url: '/video/animation_4.mp4' }
             ],
-            currentVideo: '/animation_1.mp4', // Start with the first video
-            nextVideo: '/animation_2.mp4',
+            currentVideo: window.electron.getVideoPath('/video/animation_1.mp4'), // Start with the first video
+            nextVideo: window.electron.getVideoPath('/video/animation_2.mp4'),
             // Headings for each step
             headings: [
                 'Gather Supplies',
@@ -59,8 +59,8 @@ export default {
             ],
             // Bottom buttons for each step (left and right)
             buttons: [
-                { left: 'Cancel', right: 'Open Drawer' },
-                { left: 'Cancel', right: 'Close Drawer and start test' },
+                { left: 'Cancel', right: 'Open drawer' },
+                { left: 'Cancel', right: 'Close drawer and start test' },
                 { left: '', right: '' } // No buttons for step 3
             ]
         }
@@ -83,7 +83,6 @@ export default {
     methods: {
         // Change video based on step
         changeVideo(videoIndex) {
-            console.log("changeVideo", videoIndex)
             const videoPath = window.electron.getVideoPath(this.videoList[videoIndex].url);
             this.currentVideo = `file://${videoPath}`;
 
@@ -156,7 +155,7 @@ export default {
 .heading {
     font-size: 2rem;
     font-weight: bold;
-    margin: 10px 20px;
+    margin: 15px 20px 10px;
     color: white;
     /* height: 44px; */
 }
@@ -192,31 +191,32 @@ export default {
     border: none;
     border-radius: 25px;
     cursor: pointer;
-    transition: background-color 0.3s;
     font-size: 1rem;
+    transition: width 5s linear;
+    font-weight: 600;
 }
 
 .button-section button i {
     margin-right: 8px;
 }
 
-.cancel-button {
+.button.cancel {
     background-color: #2f2f2f;
     color: white;
 }
 
-.cancel-button i {
+.button.cancel i {
     margin-right: 8px;
     position: relative;
     top: 1px;
 }
 
-.action-button {
+.button.action {
     background-color: white;
     color: black;
 }
 
-.action-button i {
+.button.action i {
     margin-left: 8px;
     position: relative;
     top: 2px;

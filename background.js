@@ -13,11 +13,6 @@ function createWindow () {
       nodeIntegration: true,
       contextIsolation: true,
       enableRemoteModule: false,
-      // Allow autoplay of media
-      allowRunningInsecureContent: true,
-      webSecurity: false,
-      // This is crucial for autoplaying media
-      // media: { autoplay: true },
     }
   })
 

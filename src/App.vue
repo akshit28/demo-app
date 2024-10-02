@@ -3,11 +3,11 @@
     <div v-if="isLoading" class="boot-container">
       <LoadingScreen />
       <div class="loading-text">
-      <span>Booting</span>
-      <span>Running self-test</span>
+        <span>Booting</span>
+        <span>Running self-test</span>
+      </div>
     </div>
-    </div>
-    
+
     <router-view v-else />
   </div>
 </template>
@@ -35,16 +35,31 @@ export default {
 </script>
 
 <style>
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  /* font-family: 'LibreFranklin', Helvetica, Arial, sans-serif; */
+}
+
+@font-face {
+  font-family: 'Libre Franklin';
+  src: url('@/assets/fonts/LibreFranklin-VariableFont_wght.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
 body {
   background: black;
-  padding:0;
-  margin:0;
+  font-family: 'Libre Franklin', Helvetica, Arial, sans-serif;
+  font-size: 16px;
 }
 
 #app-container {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
+  font-family: 'Libre Franklin', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  font-optical-sizing: auto;
   text-align: center;
   color: #2c3e50;
 }
@@ -61,7 +76,7 @@ body {
 }
 
 .loading-text>span {
-  color: white;
+  color: #e1e1e1;
   display: block
 }
 
@@ -72,4 +87,21 @@ body {
 .loading-text>span:nth-of-type(2) {
   font-size: 1rem;
 }
+
+.mt5{
+  margin-top: 5px;
+}
+
+.mb10{
+  margin-bottom: 10px;
+}
+
+.mb15{
+  margin-bottom: 15px;
+}
+
+.mb20{
+  margin-bottom: 20px;
+}
+
 </style>

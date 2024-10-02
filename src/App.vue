@@ -38,8 +38,8 @@ export default {
 *{
   margin: 0;
   padding: 0;
+  -webkit-box-sizing: border-box;
   box-sizing: border-box;
-  /* font-family: 'LibreFranklin', Helvetica, Arial, sans-serif; */
 }
 
 @font-face {
@@ -86,6 +86,10 @@ body {
 
 .loading-text>span:nth-of-type(2) {
   font-size: 1rem;
+}
+
+.mt2{
+  margin-top: 2px;
 }
 
 .mt5{

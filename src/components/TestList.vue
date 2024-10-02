@@ -4,7 +4,7 @@
     <TestGuide v-if="showTestGuide" @stepCompleted="onGuideComplete" @cancel="cancelTest"
       @complete="onTestGuideComplete" />
 
-    <!-- Show the TestProgress component when a test is selected -->
+    <!-- Show the TestProgress component when a test guide is complete -->
     <TestProgress v-if="showTestProgress" :test-name="selectedTest.name" @cancel="resetTest" />
 
     <!-- Test grid and navigation -->
@@ -20,7 +20,6 @@
 </template>
 
 <script>
-// import TestProgress from './TestProgress.vue'
 import TestProgress from '@/components/TestProgress.vue';
 import TestGuide from '@/components/TestGuide.vue';
 

@@ -13,7 +13,7 @@
         <div class="action-buttons">
             <button class="nav-button filter-icon">Filter</button>
             <button class="nav-button">Rerun</button>
-            <button class="nav-button save-pdf">Save as PDF</button>
+            <button class="nav-button export-result">Export Results</button>
         </div>
     </div>
 </template>
@@ -64,13 +64,12 @@ export default {
 
 .search-bar {
     width: 100%;
-    padding: 8px 12px 8px 30px;
+    padding: 10px 12px 10px 30px;
     background-color: rgba(255, 255, 255, 0.15);;
     border: 1px solid rgba(255, 255, 255, 0.15);;
     border-radius: 8px;
-    font-size: 16px;
     color: rgba(255, 255, 255, 0.60);
-    font-size: 1.1rem;
+    font-size: 1rem;
     outline: none;
 }
 
@@ -92,7 +91,7 @@ export default {
 
 
 
-.nav-button.save-pdf{
+.nav-button.export-result{
     background-color: #fff;
     color: #000
 }

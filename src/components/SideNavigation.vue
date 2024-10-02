@@ -2,6 +2,9 @@
     <div class="side-navigation">
         <!-- Top icons -->
         <div class="top-icons">
+            <div class="time-display">
+                {{ formattedTime }}
+            </div>
             <div class="icon" v-for="(icon, index) in topIcons" :key="index"
                 :style="{ backgroundColor: icon.backgroundColor }">
                 <img :src="icon.src" alt="icon" />
@@ -11,10 +14,7 @@
 
         <div class="bottom-hldr">
             <div class="bottom-icon" :style="{ backgroundColor: bottomIcon.backgroundColor }">
-                <span>MH</span>
-            </div>
-            <div class="time-display">
-                {{ formattedTime }}
+                <img :src="bottomIcon.src" alt="icon" />
             </div>
         </div>
 
@@ -41,7 +41,7 @@ export default {
                 }
             ],
             bottomIcon: {
-                src: "",
+                src: require('@/assets/images/home.svg'),
                 backgroundColor: '#C7C6C5'
             }
         };
@@ -115,5 +115,6 @@ export default {
     color: #fff;
     font-size: 0.7rem;
     text-transform: uppercase;
+    margin-bottom: 10px;
 }
 </style>

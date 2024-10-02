@@ -1,37 +1,37 @@
 <template>
   <div class="loading-container">
     <svg
-    xmlns="http://www.w3.org/2000/svg"
-    viewBox="0 0 100 100"
-    preserveAspectRatio="xMidYMid"
-    :width="width"
-    :height="height"
-    :style="{ shapeRendering: 'auto', display: 'block', background: 'transparent' }"
-  >
-    <g>
-      <g v-for="(_, index) in 100" :key="index" :transform="`rotate(${3.6 * index} 50 50)`">
-        <rect
-          :fill="getBarColor()"
-          height="2.5"
-          width="0.4"
-          ry="0"
-          rx="0"
-          y="13.5"
-          x="49.5"
-        >
-          <animate
-            v-if="!testCompleted"
-            repeatCount="indefinite"
-            :begin="`-${4.166666666666666 - (index * 0.041666666666666664)}s`"
-            dur="4.166666666666666s"
-            keyTimes="0;1"
-            values="1;0.3"
-            attributeName="opacity"
-          ></animate>
-        </rect>
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 100 100"
+      preserveAspectRatio="xMidYMid"
+      :width="width"
+      :height="height"
+      :style="{ shapeRendering: 'auto', display: 'block', background: 'transparent' }"
+    >
+      <g>
+        <g v-for="(_, index) in 100" :key="index" :transform="`rotate(${-3.6 * index} 50 50)`">
+          <rect
+            :fill="getBarColor()"
+            height="2.5"
+            width="0.4"
+            ry="0"
+            rx="0"
+            y="13.5"
+            x="49.5"
+          >
+            <animate
+              v-if="!testCompleted"
+              repeatCount="1"
+              :begin="`-${(duration / 100) * index}s`"
+              :dur="`${duration}s`"
+              keyTimes="0;1"
+              values="1;0.3"
+              attributeName="opacity"
+            ></animate>
+          </rect>
+        </g>
       </g>
-    </g>
-  </svg>
+    </svg>
 
   </div>
 </template>
@@ -42,14 +42,18 @@ export default {
   props: {
     width: {
       type: [Number, String],
-      default: 600
+      default: 616
     },
     height: {
       type: [Number, String],
-      default: 600
+      default: 616
+    },
+    duration: {
+      type: [Number, String],
+      default: 20 // Default duration in seconds
     }
   },
-  data(){
+  data() {
     return {
       testCompleted: false // Boolean to track test completion
     };
@@ -63,12 +67,11 @@ export default {
     }
   },
   mounted() {
-    // Simulate test completion after 5 seconds
-    // setTimeout(() => {
-    //   this.completeTest();
-    // }, 5000);
+    // Simulate test completion after specified duration
+    setTimeout(() => {
+      this.completeTest();
+    }, this.duration * 1000); // Convert to milliseconds
   }
-
 }
 </script>
 

@@ -2,6 +2,7 @@ import { createRouter, createWebHashHistory } from 'vue-router'
 import TestList from '@/components/TestList.vue'
 import TestProgress from '@/components/TestProgress.vue'
 import TestResult from '@/components/TestResult.vue'
+import QualityCheck from '@/components/QualityCheck.vue'
 
 const routes = [
   {
@@ -23,6 +24,11 @@ const routes = [
     path: '/testresult',
     name: 'TestResult',
     component: TestResult
+  },
+  {
+    path: '/qualitycheck',
+    name: 'QualityCheck',
+    component: QualityCheck
   }
 ]
 

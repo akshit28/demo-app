@@ -7,7 +7,6 @@
         <span>Running self-test</span>
       </div>
     </div>
-
     <router-view v-else />
   </div>
 </template>
@@ -47,6 +46,14 @@ export default {
   src: url('@/assets/fonts/LibreFranklin-VariableFont_wght.ttf') format('truetype');
   font-weight: normal;
   font-style: normal;
+}
+
+@font-face {
+  font-family: 'Libre Franklin Bold';
+  src: url('@/assets/fonts/LibreFranklin-Bold.ttf') format('truetype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
 }
 
 body {

@@ -2,19 +2,19 @@
     <div class="side-navigation">
         <!-- Top icons -->
         <div class="top-icons">
-            <div class="time-display">
-                {{ formattedTime }}
-            </div>
             <div class="icon" v-for="(icon, index) in topIcons" :key="index"
-                :style="{ backgroundColor: icon.backgroundColor }">
+                :style="{ backgroundColor: icon.backgroundColor }" @click="redirectTo(icon.route)">
                 <img :src="icon.src" alt="icon" />
             </div>
         </div>
 
 
         <div class="bottom-hldr">
-            <div class="bottom-icon" :style="{ backgroundColor: bottomIcon.backgroundColor }">
+            <div class="bottom-icon" :style="{ backgroundColor: bottomIcon.backgroundColor }" @click="redirectTo(bottomIcon.route)">
                 <img :src="bottomIcon.src" alt="icon" />
+            </div>
+            <div class="time-display">
+                {{ formattedTime }}
             </div>
         </div>
 
@@ -29,26 +29,35 @@ export default {
             topIcons: [
                 {
                     src: require('@/assets/images/lab_profile.svg'),
-                    backgroundColor: '#C9E6E3'
+                    backgroundColor: '#C9E6E3',
+                    route: '/test'
                 },
                 {
                     src: require('@/assets/images/labs.svg'),
-                    backgroundColor: '#FFB598'
+                    backgroundColor: '#FFB598',
+                    route: '/qualitycheck'
                 },
                 {
                     src: require('@/assets/images/settings.svg'),
-                    backgroundColor: '#FFB0CD'
+                    backgroundColor: '#FFB0CD',
+                    route: '/test'
                 }
             ],
             bottomIcon: {
                 src: require('@/assets/images/home.svg'),
-                backgroundColor: '#C7C6C5'
+                backgroundColor: '#C7C6C5',
+                route: '/test'
             }
         };
     },
     computed: {
         formattedTime() {
             return this.currentTime.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', hour12: true });
+        }
+    },
+    methods: {
+        redirectTo(route) {
+            this.$router.push(route); // Redirect to the specified route
         }
     },
     mounted() {
@@ -65,7 +74,7 @@ export default {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    width: 80px;
+    width: 100px;
     height: 100vh;
     background-color: #121212;
     padding: 10px;
@@ -87,13 +96,13 @@ export default {
 
 .icon,
 .bottom-icon {
-    width: 60px;
-    height: 60px;
+    width: 80px;
+    height: 80px;
     display: flex;
     justify-content: center;
     align-items: center;
-    border-radius: 18px;
-    margin-bottom: 10px;
+    border-radius: 24px;
+    margin-bottom: 16px;
 }
 
 .bottom-icon{
@@ -102,8 +111,8 @@ export default {
 
 .icon img,
 .bottom-icon img {
-    width: 30px;
-    height: 30px;
+    width: 40px;
+    height: 40px;
 }
 
 .bottom-icon span {
@@ -115,6 +124,6 @@ export default {
     color: #fff;
     font-size: 0.7rem;
     text-transform: uppercase;
-    margin-bottom: 10px;
+    /* margin-bottom: 10px; */
 }
 </style>

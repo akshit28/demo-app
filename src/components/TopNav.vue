@@ -5,7 +5,7 @@
 
         <!-- Search Bar with Icon -->
         <div class="search-container">
-            <i class="pi pi-search search-icon"></i>
+            <!-- <i class="pi pi-search search-icon"></i> -->
             <input type="text" class="search-bar" placeholder="Search" />
         </div>
 
@@ -29,7 +29,7 @@ export default {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 10px 15px;
+    padding: 16px;
     background-color: #121212;
 }
 
@@ -40,7 +40,7 @@ export default {
     border: none;
     border-radius: 20px;
     cursor: pointer;
-    font-size: 0.9rem;
+    font-size: 1.25rem;
     font-weight: 600;
 }
 
@@ -64,13 +64,21 @@ export default {
 
 .search-bar {
     width: 100%;
-    padding: 10px 12px 10px 30px;
+    padding: 10px 12px 10px 35px;
     background-color: rgba(255, 255, 255, 0.15);;
     border: 1px solid rgba(255, 255, 255, 0.15);;
-    border-radius: 8px;
+    border-radius: 12px;
     color: rgba(255, 255, 255, 0.60);
-    font-size: 1rem;
+    font-size: 1.25rem;
     outline: none;
+    background-image: url('@/assets/images/search.svg');
+    background-repeat: no-repeat;
+    background-size: 20px;
+    background-position: 10px center;
+}
+
+.search-bar::placeholder {
+    color: rgba(255, 255, 255, 0.60);
 }
 
 .action-buttons {

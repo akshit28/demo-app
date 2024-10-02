@@ -106,7 +106,7 @@ export default {
   /* 4 columns */
   gap: 20px;
   /* Gap between buttons */
-  padding: 10px;
+  padding: 20px;
   justify-items: center;
   /* Center the buttons horizontally */
 }

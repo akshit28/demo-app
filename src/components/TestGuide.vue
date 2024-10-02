@@ -153,9 +153,9 @@ export default {
 }
 
 .heading {
-    font-size: 2rem;
-    font-weight: bold;
-    margin: 15px 20px 10px;
+    font-size: 2.25rem;
+    font-family: 'Libre Franklin Bold'; 
+    margin: 30px 20px 0;
     color: white;
     /* height: 44px; */
 }
@@ -163,10 +163,8 @@ export default {
 .video-section {
     display: flex;
     justify-content: center;
-    /* Center horizontally */
     align-items: center;
-    min-height: 400px;
-    /* Margin for spacing */
+    height: calc(100vh - 170px);
 }
 
 .video-player {
@@ -183,7 +181,7 @@ export default {
     justify-content: center;
     gap: 10px;
     position: fixed;
-    bottom: 20px;
+    bottom: 30px;
 }
 
 .button-section button {

@@ -4,7 +4,7 @@
       <div class="current-time">{{ currentDateTime }}</div>
     </div>
     <div class="test-progress-container">
-      <LoadingScreen ref="loadingScreenRef" />
+      <LoadingScreen ref="loadingScreenRef" :duration="600"/>
       <div class="test-info-container">
         <div class="test-progress" v-if="!testCompleted">
           <video :src="currentVideo" preload="auto" autoplay muted playsinline class="logo-animation" />
@@ -107,7 +107,7 @@ export default {
 
     setTimeout(() => {
       this.completeTest();
-    }, 5000);
+    }, 10000);
   },
   beforeUnmount() {
     if (this.timer) {
@@ -212,6 +212,7 @@ button {
 .test-completed h3 {
   color: #fff;
   font-size: 2rem;
+  font-family: 'Libre Franklin Bold';
 }
 
 .test-completed i{

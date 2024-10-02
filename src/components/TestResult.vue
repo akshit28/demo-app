@@ -176,8 +176,8 @@ export default {
     width: 100%;
     overflow: auto;
     height: calc(100vh - 61px);
-    gap: 10px;
-    padding: 10px 15px;
+    gap: 15px;
+    padding: 15px;
 }
 
 .content-panel::-webkit-scrollbar {
@@ -196,14 +196,14 @@ export default {
 
 .card-row {
     display: flex;
-    gap: 10px;
+    gap: 15px;
 }
 
 .card {
     flex: 1;
     background-color: #1d1d1d;
-    border-radius: 15px;
-    padding: 15px;
+    border-radius: 24px;
+    padding: 20px;
     margin-bottom: 15px;
 }
 
@@ -224,22 +224,22 @@ export default {
 .label-value label {
     color: #8F8F8F;
     display: block;
-    font-size: 0.9rem;
+    font-size: 1.25rem;
 }
 
 .label-value span {
     display: block;
     color: #E1E1E1;
-    font-size: 1rem;
+    font-size: 1.25rem;
 }
 
 .name-label label {
-    font-size: 0.8rem;
+    font-size: 1.125rem;
 }
 
 .name-label span {
-    font-size: 1.4rem;
-    font-weight: bold;
+    font-size: 2rem;
+    font-family: 'Libre Franklin Bold';
 }
 
 .test-row {
@@ -255,16 +255,17 @@ export default {
 
 .test-right {
     text-align: right;
-    font-size: 0.9rem;
+    font-size: 1.25rem;
 }
 
 .test-name {
-    font-weight: bold;
+    font-family: 'Libre Franklin Bold';
+    font-size: 1.5rem;
 }
 
 .test-type {
     color: #8F8F8F;
-    font-size: 0.9rem;
+    font-size: 1.25rem;
 }
 
 /* In-range status styling */
@@ -305,10 +306,10 @@ export default {
 
 .idle-val-label {
     position: absolute;
-    right: -8px;
+    right: -10px;
     color: #8F8F8F;
-    bottom: -18px;
-    font-size: 0.8rem;
+    bottom: -24px;
+    font-size: 1rem;
 }
 
 .in-range.right-bar {
@@ -336,10 +337,10 @@ export default {
 }
 
 .circle-text {
-    font-size: 0.8rem;
+    font-size: 1rem;
     color: #fff;
     position: absolute;
-    top: -18px;
+    top: -22px;
 }
 
 .test-results-cont {
@@ -351,14 +352,14 @@ export default {
 
 .circle-container {
     display: flex;
-    gap: 3px;
+    gap: 4px;
     flex-wrap: wrap;
     /* Space between circles */
 }
 
 .test-circle {
-    width: 6px;
-    height: 6px;
+    width: 8px;
+    height: 8px;
     border-radius: 50%;
 }
 
@@ -377,10 +378,10 @@ export default {
 .test-count {
     margin-top: 20px;
     color: #E1E1E1;
-    font-size: 0.9rem;
+    font-size: 1.25rem;
 }
 
 .test-count span {
-    font-weight: bold;
+    font-family: 'Libre Franklin Bold';
 }
 </style>

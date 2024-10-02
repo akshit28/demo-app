@@ -31,7 +31,7 @@ export default {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    height: 600px;
+    height: 800px;
     perspective: 1000px;
     transform: rotateX(65deg);
     position: absolute;
